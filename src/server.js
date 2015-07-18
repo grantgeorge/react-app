@@ -31,10 +31,14 @@ const template = _.template(fs.readFileSync(templateFile, 'utf8'));
 
 server.get('*', async (req, res, next) => {
   try {
+<<<<<<< HEAD
     // TODO: Temporary fix #159
     if (['/', '/about', '/privacy'].indexOf(req.path) !== -1) {
       await db.getPage(req.path);
     }
+=======
+    let uri = req.path;
+>>>>>>> init
     let notFound = false;
     let css = [];
     let data = {description: ''};
@@ -47,6 +51,10 @@ server.get('*', async (req, res, next) => {
         onPageNotFound: () => notFound = true
       }} />);
 
+<<<<<<< HEAD
+=======
+    await db.getPage(uri);
+>>>>>>> init
     data.body = React.renderToString(app);
     data.css = css.join('');
     let html = template(data);
